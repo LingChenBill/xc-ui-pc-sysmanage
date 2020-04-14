@@ -9,7 +9,23 @@ import VueRouter from 'vue-router'
 import routes from './base/router'
 import store from './vuex/store'
 import Vuex from 'vuex'
+
+// 4.0 注册mint-ui
+// 导入mint-ui的css文件
+import 'mint-ui/lib/style.min.css';
+// 导入mint-ui组件对象
+import mintui from 'mint-ui';
+// 注册mui的css样式
+import './statics/mui/css/mui.css';
+
+// 导入当前系统的全局基本样式
+import './statics/css/site.css';
+
+// 导入轮播图
+import { Swipe, SwipeItem } from 'mint-ui';
 import utilApi from './common/utils';
+import * as systemApi from './base/api/system';
+
 // import Mock from './mock'
 // Mock.bootstrap();
 
@@ -17,10 +33,13 @@ import utilApi from './common/utils';
 Vue.config.productionTip = false
 
 // 在Vue中全局使用mintui
+Vue.use(mintui);
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VueRouter)
 
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
 //  将vue-resource在vue中绑定，自动在vue对象实例上注入一个$http对象就可以使用ajax方法了
 import vueResource from 'vue-resource';
@@ -34,6 +53,7 @@ Vue.use(vueResource);
 const router = new VueRouter({
   routes:routes
 })
+
 /*
 router.beforeEach((to, from, next) => {
   if(openAuthenticate){

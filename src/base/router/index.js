@@ -8,8 +8,22 @@ let concat = (router) => {
 }
 // 导入路由规则
 import HomeRouter from '@/module/home/router'
-import CmsRouter from '@/module/cms/router'
+// import CmsRouter from '@/module/cms/router'
+
+// // 导入路由规则
+import CourseRouter from '@/module/course/router'
+import MediaRouter from '@/module/media/router'
+import ExamRouter from '@/module/exam/router'
+import QuestionRouter from '@/module/question/router'
+// import CmsRouter from '@/module/cms/router'
+// import FsRouter from '@/module/fs/router'
+// 合并路由规则
+concat(CourseRouter)
+concat(MediaRouter)
+
+// concat(ExamRouter)
+// concat(QuestionRouter)
 // 合并路由规则
 concat(HomeRouter)
-concat(CmsRouter)
+// concat(CmsRouter)
 export default routes;

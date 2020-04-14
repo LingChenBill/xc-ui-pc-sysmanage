@@ -26,6 +26,12 @@ module.exports = {
         }
         //target: 'http://127.0.0.1:50201'
 
+      },
+      '/api/course': {
+        target: 'http://localhost:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
       }
       /*,
       '/ucenter': {
