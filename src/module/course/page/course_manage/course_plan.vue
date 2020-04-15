@@ -12,7 +12,7 @@
 
     <el-dialog title="添加课程计划" :visible.sync="teachplayFormVisible" >
 
-      <el-form ref="teachplanForm"  :model="teachplanActive" label-width="140px" style="width:600px;" :rules="teachplanRules" >
+      <el-form ref="teachplanForm" :model="teachplanActive" label-width="140px" style="width:600px;" :rules="teachplanRules" >
         <el-form-item label="上级结点" >
           <el-select v-model="teachplanActive.parentid" placeholder="不填表示根结点">
             <el-option
@@ -75,6 +75,8 @@
       return {
         mediaFormVisible:false,
         teachplayFormVisible:false,//控制添加窗口是否显示
+
+        // 测试值
         teachplanList : [{
           id: 1,
           pname: '一级 1',
@@ -94,6 +96,7 @@
           children: 'children',
           label: 'pname'
         },
+        // 课程计划校验规则
         teachplanRules: {
           pname: [
             {required: true, message: '请输入课程计划名称', trigger: 'blur'}
@@ -143,20 +146,20 @@
                 //调用api方法
               //将课程id设置到teachplanActive
               this.teachplanActive.courseid = this.courseid
-              // courseApi.addTeachplan(this.teachplanActive).then(res=>{
-              //   if(res.success){
-              //       this.$message.success("添加成功")
-              //       //刷新树
-              //       this.findTeachplan()
-              //   }else{
-              //     this.$message.error(res.message)
-              //   }
-              //
-              // })
+              courseApi.addTeachplan(this.teachplanActive).then(res=>{
+                if(res.success){
+                    this.$message.success("添加成功")
+                    //刷新树
+                    this.findTeachplan()
+                }else{
+                  this.$message.error(res.message)
+                }
+
+              })
             }
         })
       },
-  //重置表单
+      //重置表单
       resetForm(){
         this.teachplanActive = {}
       },
@@ -195,14 +198,11 @@
       // 查询课程计划
       findTeachplan() {
         this.teachplanList = []
-        debugger
         //查询课程计划
         courseApi.findTeachplanList(this.courseid).then(res => {
           if (res && res.children) {
             this.teachplanList = res.children;
-
           }
-
         })
       }
     },
@@ -211,7 +211,6 @@
       this.courseid = this.$route.params.courseid;
       // 查询课程计划
       this.findTeachplan()
-
     }
   }
 </script>
