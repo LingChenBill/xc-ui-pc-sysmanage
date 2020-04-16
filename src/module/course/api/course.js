@@ -5,19 +5,28 @@ let apiUrl = sysConfig.xcApiUrlPre;
 
 //查询课程列表
 //我的课程列表
-export const findCourseList = (page,size,params) => {
+export const findCourseList = (page, size, params) => {
 //使用工具类将json对象转成key/value
   let queries = querystring.stringify(params)
-  return http.requestQuickGet(apiUrl+"/course/coursebase/list/"+page+"/"+size+"?"+queries)
+  return http.requestQuickGet(apiUrl + "/course/coursebase/list/" + page + "/" + size + "?" + queries)
+}
+
+// 查询课程信息
+export const getCourseById = courseId => {
+  return http.requestQuickGet(apiUrl + "/course/coursebase/get/" + courseId)
 }
 
 //查询课程分类
-export const category_findlist= () => {
-  return http.requestQuickGet(apiUrl+'/category/list')
+export const category_findlist = () => {
+  return http.requestQuickGet(apiUrl + '/category/list')
 }
 /*添加课程基础信息*/
 export const addCourseBase = params => {
-  return http.requestPost(apiUrl+'/course/coursebase/add',params)
+  return http.requestPost(apiUrl + '/course/coursebase/add', params)
+}
+/*编辑课程基础信息*/
+export const updateCoursebase = (id, params) => {
+  return http.requestPut(apiUrl + '/course/coursebase/update/' + id, params)
 }
 /*查询课程计划*/
 export const findTeachplanList = courseid => {

@@ -27,12 +27,29 @@ module.exports = {
         //target: 'http://127.0.0.1:50201'
 
       },
+      // 课程管理
       '/api/course': {
         target: 'http://localhost:31200',
         pathRewrite: {
           '^/api': ''
         }
+      },
+      // 分类管理
+      '/api/category': {
+        // target: 'http://127.0.0.1:3000/mock/11'
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      // 数据字典管理
+      '/api/sys': {
+        target: 'http://localhost:31001',
+        pathRewrite: {
+          '^/api': ''
+        }
       }
+
       /*,
       '/ucenter': {
         // target: 'http://localhost:3000/mock/11'

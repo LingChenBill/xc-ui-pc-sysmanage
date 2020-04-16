@@ -1,7 +1,7 @@
 <template>
   <section>
-    <el-row >
-      <el-col :span="8"  :offset=2 >
+    <el-row>
+      <el-col :span="8" :offset=2>
         <el-card :body-style="{ padding: '10px' }">
           <img src="/static/images/add.jpg" class="image" height="150px">
           <div style="padding: 10px;">
@@ -9,7 +9,7 @@
             <div class="bottom clearfix">
               <time class="time"></time>
               <router-link class="mui-tab-item" :to="{path:'/course/add/base'}">
-                  <el-button type="text" class="button" >新增课程</el-button>
+                <el-button type="text" class="button">新增课程</el-button>
               </router-link>
             </div>
           </div>
@@ -45,23 +45,24 @@
   export default {
     data() {
       return {
-        page:1,
-        size:7,
+        page: 1,
+        size: 7,
         total: 0,
+        // 课程信息
         courses: [
           {
-            id:'test01',
-            name:'test01',
-            pic:''
+            id: '4028e581617f945f01617f9dabc40000',
+            name: '测试站点',
+            pic: ''
           },
           {
-            id:'test02',
-            name:'test02',
-            pic:''
+            id: 'test02',
+            name: 'test02',
+            pic: ''
           }
-          ],
+        ],
         sels: [],//列表选中列
-        imgUrl:sysConfig.imgUrl
+        imgUrl: sysConfig.imgUrl
       }
     },
     methods: {
@@ -72,13 +73,12 @@
       },
       //获取课程列表
       getCourse() {
-        courseApi.findCourseList(this.page,this.size,{}).then((res) => {
+        courseApi.findCourseList(this.page, this.size, {}).then((res) => {
           console.log(res);
-          if(res.success){
+          if (res.success) {
             this.total = res.queryResult.total;
             this.courses = res.queryResult.list;
           }
-
         });
       },
       handleManage: function (id) {
