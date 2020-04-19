@@ -48,6 +48,13 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+      // 数据字典管理
+      '/api/filesystem': {
+        target: 'http://localhost:22100',
+        pathRewrite: {
+          '^/api': ''
+        }
       }
 
       /*,

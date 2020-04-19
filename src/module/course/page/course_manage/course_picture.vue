@@ -9,7 +9,8 @@
       :limit="picmax"
       :on-exceed="rejectupload"
       :before-remove="handleRemove"
-      :data="uploadval">
+      :data="uploadval"
+      name="multipartFile">
       <i class="el-icon-plus"></i>
     </el-upload>
   </div>
@@ -62,20 +63,20 @@
 
       },
       //上传成功的钩子方法
-      handleSuccess(response, file, fileList){
+      handleSuccess(response, file, fileList) {
         console.log(response)
 //        alert('上传成功')
         //调用课程管理的保存图片接口，将图片信息保存到课程管理数据库course_pic中
         //从response得到新的图片文件的地址
-        if(response.success){
+        if (response.success) {
+          // 课程图片文件ID
           let fileId = response.fileSystem.fileId;
-          courseApi.addCoursePic(this.courseid,fileId).then(res=>{
-              if(res.success){
-                  this.$message.success("上传图片")
-              }else{
-                this.$message.error(res.message)
-              }
-
+          courseApi.addCoursePic(this.courseid, fileId).then(res => {
+            if (res.success) {
+              this.$message.success("上传图片")
+            } else {
+              this.$message.error(res.message)
+            }
           })
         }
 
